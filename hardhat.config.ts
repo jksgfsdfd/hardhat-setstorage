@@ -5,10 +5,12 @@ dotenv.config();
 
 const config: HardhatUserConfig = {
   solidity: "0.8.18",
+  defaultNetwork:"localhost",
   networks:{
     hardhat:{
       forking:{
-        url:process.env.MAINNET_PROVIDER as string
+        url:process.env.MAINNET_PROVIDER as string,
+        blockNumber:16844866
       }
     }
   }
