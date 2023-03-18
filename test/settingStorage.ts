@@ -76,8 +76,9 @@ it("Changes the owner address", async function () {
 
 it("Gets the balance of the user correctly with known balance slot", async function () {
   const weth = await ethers.getContractAt(erc20Abi, wethAddress);
-  const checkAddress = "0xF04a5cC80B1E94C69B48f5ee68a08CD2F09A7c3E";
+
   // for weth contract the balanceOf mapping is the 4th variable and there is no packing before
+  const checkAddress = "0xF04a5cC80B1E94C69B48f5ee68a08CD2F09A7c3E";
   const balanceSlot = 3;
   const checkerBalanceSlot = ethers.utils.hexStripZeros(
     ethers.utils.keccak256(
@@ -90,7 +91,6 @@ it("Gets the balance of the user correctly with known balance slot", async funct
   // verifying that balance slot is actually 3
 
   const balanceFunctionCall = await weth.balanceOf(checkAddress);
-  console.log(balanceFunctionCall);
   const balanceGetStorageCall = await ethers.provider.send("eth_getStorageAt", [
     wethAddress,
     checkerBalanceSlot,
